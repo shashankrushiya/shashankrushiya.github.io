@@ -41,7 +41,7 @@ const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          style={{ maxX: 'calc(100vw - 8rem)' }}
+          style={{ maxWidth: 'calc(100vw - 8rem)' }}
         />
         <motion.div
           className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full blur-xl"
@@ -54,7 +54,7 @@ const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          style={{ maxX: 'calc(100vw - 6rem)' }}
+          style={{ maxWidth: 'calc(100vw - 6rem)' }}
         />
         <motion.div
           className="absolute bottom-20 left-1/3 w-40 h-40 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-xl"
@@ -67,7 +67,7 @@ const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          style={{ maxX: 'calc(100vw - 10rem)' }}
+          style={{ maxWidth: 'calc(100vw - 10rem)' }}
         />
       </div>
 
