@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    /* Prevent horizontal scrollbar from appearing */
+    overflow-x: hidden;
+    /* Ensure consistent scrollbar width */
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Prevent layout shifts from scrollbar */
+    padding-right: 0;
+    margin-right: 0;
+  }
+  
+  /* Custom scrollbar - fixed width to prevent movement */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+  
+  /* Prevent horizontal scrollbar */
+  ::-webkit-scrollbar:horizontal {
+    height: 0;
+    display: none;
+  }
+  
+  /* Ensure all sections don't cause horizontal overflow */
+  section {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Prevent container overflow */
+  .container, .container-custom {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Fix for Framer Motion causing layout shifts */
+  [data-framer-motion] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Prevent text from causing horizontal scroll */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-background/80 backdrop-blur-xl border border-border/20;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-24 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .luxury-shadow {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .luxury-shadow-white {
+    box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Enhanced animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Prevent scrollbar movement */
+  .no-scrollbar-shift {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Smooth transitions without layout shifts */
+  .smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+} 
