@@ -1,6 +1,6 @@
 # GitHub Pages Deployment Guide
 
-This guide will walk you through deploying your Next.js portfolio to GitHub Pages.
+This guide will walk you through deploying your Next.js portfolio to GitHub Pages at the root (https://shashankrushiya.github.io/).
 
 ## 🚀 Quick Start (Recommended)
 
@@ -12,7 +12,7 @@ git add .
 git commit -m "Initial commit"
 
 # Add your GitHub repository as remote
-git remote add origin https://github.com/yourusername/Portfolio.git
+git remote add origin https://github.com/shashankrushiya/shashankrushiya.github.io.git
 git branch -M main
 git push -u origin main
 ```
@@ -21,11 +21,12 @@ git push -u origin main
 1. Go to your repository on GitHub
 2. Navigate to **Settings** → **Pages**
 3. Under **Source**, select **GitHub Actions**
-4. Save the settings
+4. Set branch to `gh-pages` and folder to `/` (root)
+5. Save the settings
 
 ### 3. Automatic Deployment
 - Every push to the `main` branch will automatically trigger deployment
-- Your site will be available at: `https://yourusername.github.io/Portfolio`
+- Your site will be available at: `https://shashankrushiya.github.io/`
 
 ## 🔧 Manual Deployment
 
@@ -76,15 +77,13 @@ const nextConfig = {
   images: {
     unoptimized: true,        // Required for static export
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
 }
 ```
 
 ### GitHub Actions (`.github/workflows/deploy.yml`)
 - Automatically builds and deploys on push to main
 - Uses Node.js 18
-- Deploys to GitHub Pages environment
+- Deploys to GitHub Pages environment at the root
 
 ## 🔍 Troubleshooting
 
@@ -92,10 +91,9 @@ const nextConfig = {
 
 #### 1. 404 Errors
 - Ensure `trailingSlash: true` is set in `next.config.js`
-- Check that base path matches your repository name
+- No basePath or assetPrefix should be set
 
 #### 2. Assets Not Loading
-- Verify `assetPrefix` is correctly set
 - Check that images are in the `public` folder
 
 #### 3. Build Failures
@@ -167,4 +165,4 @@ If you encounter issues:
 
 ---
 
-**Note**: Replace `yourusername` with your actual GitHub username throughout this guide. 
+**Note**: This guide is for root deployment at https://shashankrushiya.github.io/ 

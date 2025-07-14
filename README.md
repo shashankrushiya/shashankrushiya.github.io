@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 ## 🚀 Live Demo
 
-Visit: [https://yourusername.github.io/Portfolio](https://yourusername.github.io/Portfolio)
+Visit: [https://shashankrushiya.github.io/](https://shashankrushiya.github.io/)
 
 ## 🛠️ Tech Stack
 
@@ -20,8 +20,8 @@ Visit: [https://yourusername.github.io/Portfolio](https://yourusername.github.io
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Portfolio.git
-cd Portfolio
+git clone https://github.com/shashankrushiya/shashankrushiya.github.io.git
+cd shashankrushiya.github.io
 
 # Install dependencies
 npm install
@@ -48,11 +48,11 @@ This project is configured for automatic deployment to GitHub Pages using GitHub
 #### Prerequisites:
 1. Push your code to a GitHub repository
 2. Enable GitHub Pages in your repository settings
-3. Set the source to "GitHub Actions"
+3. Set the source to "GitHub Actions" and branch to `gh-pages` (root)
 
 #### Automatic Deployment:
 - Every push to the `main` branch triggers automatic deployment
-- The site will be available at `https://yourusername.github.io/Portfolio`
+- The site will be available at `https://shashankrushiya.github.io/`
 
 #### Manual Deployment:
 ```bash
@@ -81,7 +81,7 @@ Portfolio/
 
 ### Next.js Config (`next.config.js`)
 - Static export enabled for GitHub Pages
-- Base path configured for repository name
+- No base path or asset prefix (root deployment)
 - Image optimization disabled for static export
 
 ### GitHub Actions (`.github/workflows/deploy.yml`)

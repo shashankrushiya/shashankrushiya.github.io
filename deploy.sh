@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Deploy script for GitHub Pages
+# Deploy script for GitHub Pages (root deployment)
 echo "🚀 Starting deployment to GitHub Pages..."
 
 # Build the project
@@ -24,9 +24,9 @@ fi
 # Remove all files except .git
 git rm -rf .
 
-# Copy built files
+# Copy built files to root
 echo "📋 Copying built files..."
-cp -r out/* .
+cp -r ../out/* .
 
 # Add all files
 git add .
@@ -37,10 +37,10 @@ git commit -m "Deploy to GitHub Pages - $(date)"
 
 # Push to gh-pages branch
 echo "🚀 Pushing to GitHub Pages..."
-git push origin gh-pages
+git push origin gh-pages --force
 
 # Switch back to main branch
 git checkout main
 
 echo "✅ Deployment completed!"
-echo "🌐 Your site should be available at: https://yourusername.github.io/Portfolio" 
+echo "🌐 Your site should be available at: https://shashankrushiya.github.io/" 
