@@ -64,6 +64,11 @@
     /* Prevent layout shifts from scrollbar */
     padding-right: 0;
     margin-right: 0;
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 30%),
+      radial-gradient(circle at 88% 10%, rgba(15, 23, 42, 0.05), transparent 20%),
+      radial-gradient(circle at 50% 35%, rgba(148, 163, 184, 0.06), transparent 28%),
+      linear-gradient(180deg, #fafaf7 0%, #f4f4f0 100%);
   }
   
   /* Custom scrollbar - fixed width to prevent movement */
@@ -96,6 +101,7 @@
   section {
     overflow-x: hidden;
     width: 100%;
+    position: relative;
   }
   
   /* Prevent container overflow */
@@ -127,7 +133,7 @@
 
 @layer components {
   .glass-effect {
-    @apply bg-background/80 backdrop-blur-xl border border-border/20;
+    @apply bg-background/70 backdrop-blur-xl border border-border/20;
   }
   
   .gradient-text {
@@ -184,6 +190,18 @@
   .smooth-transition {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateZ(0);
+  }
+
+  .section-shell {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight text-white;
+  }
+
+  .section-kicker {
+    @apply text-xs uppercase tracking-[0.3em] text-cyan-300/70;
   }
 }
 
