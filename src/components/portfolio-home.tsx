@@ -233,7 +233,7 @@ export default function PortfolioHome() {
               Smooth presentation. Real signals. No fake dashboard noise.
             </h2>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              This layout leans editorial and smooth, while still surfacing the proof recruiters look for: ownership, tools, outcomes, and role clarity.
+              This layout stays editorial and smooth while still surfacing ownership, tools, outcomes, and role clarity.
             </p>
           </div>
 
@@ -292,7 +292,7 @@ export default function PortfolioHome() {
             <div className={sectionHeader}>
               <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Impact</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Measurable outcomes from the resume, presented simply.
+                Selected outcomes, shown with clarity.
               </h2>
               <p className="max-w-2xl text-lg leading-8 text-slate-600">
                 These cards keep the numbers visible without turning the page into a data board.
