@@ -39,25 +39,25 @@ const processSteps = [
   {
     step: "01",
     title: "Review requirements early",
-    text: "I validate scope, edge cases, and testability before the sprint locks in, so quality is designed in instead of bolted on.",
+    text: "I review scope, edge cases, and testability before the sprint closes.",
     icon: ShieldCheck,
   },
   {
     step: "02",
     title: "Automate the critical path",
-    text: "I build useful coverage across UI, API, and integration layers using Python, Playwright, Selenium, Pytest, and BDD.",
+    text: "I build coverage across UI, API, and integration layers using Python, Playwright, Selenium, Pytest, and BDD.",
     icon: Code2,
   },
   {
     step: "03",
     title: "Tie tests to delivery",
-    text: "Automated checks flow through Jenkins and release routines, so the team gets faster signal and fewer surprises.",
+    text: "Automated checks run through Jenkins and release routines.",
     icon: Workflow,
   },
   {
     step: "04",
     title: "Measure and improve",
-    text: "Coverage, cycle time, flakiness, and defect leakage stay visible so the framework keeps getting better over time.",
+    text: "I track coverage, cycle time, flaky tests, and defect leakage.",
     icon: Layers3,
   },
 ];
@@ -112,9 +112,9 @@ export default function PortfolioHome() {
               </div>
 
               <div className="space-y-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">Professional Hybrid</p>
+                <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">Automation engineer</p>
                 <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
-                  I build automation that helps teams ship with confidence.
+                  Python automation for UI, API, and integration testing.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-white/72">
                   {site.summary}
@@ -192,10 +192,10 @@ export default function PortfolioHome() {
 
               <div className="mt-6 space-y-3">
                 {[
-                  "Owns test strategy from planning to release sign-off",
-                  "Strong in UI, API, integration, and mobile testing",
-                  "Uses AI tools with intent, not decoration",
-                  "Improves coverage, cycle time, and reliability",
+                  "Test strategy, execution, and release sign-off",
+                  "UI, API, integration, and mobile testing",
+                  "OpenAI-assisted test generation and reporting",
+                  "Coverage, cycle time, and flaky-test reduction",
                 ].map((point) => (
                   <div
                     key={point}
@@ -230,10 +230,10 @@ export default function PortfolioHome() {
           <div className={sectionHeader}>
             <p className="text-xs uppercase tracking-[0.35em] text-sky-700/70">Overview</p>
             <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Smooth presentation. Real signals. No fake dashboard noise.
+              Selected work across automation, quality, and delivery.
             </h2>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              This layout stays editorial and smooth while still surfacing ownership, tools, outcomes, and role clarity.
+              Python-based automation, API coverage, CI/CD integration, and release support across product teams.
             </p>
           </div>
 
@@ -279,9 +279,9 @@ export default function PortfolioHome() {
               <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
                 <BrainCircuit size={18} />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-950">AI with intent</h3>
+              <h3 className="mt-4 text-lg font-semibold text-slate-950">OpenAI-assisted testing</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                OpenAI-assisted test generation and reporting to reduce manual effort and improve coverage quality.
+                Test generation and reporting where it saves time.
               </p>
             </div>
           </div>
@@ -292,10 +292,10 @@ export default function PortfolioHome() {
             <div className={sectionHeader}>
               <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Impact</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Selected outcomes, shown with clarity.
+                Results from recent roles.
               </h2>
               <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                These cards keep the numbers visible without turning the page into a data board.
+                Coverage, cycle time, and reliability gains from production automation work.
               </p>
             </div>
 
@@ -315,10 +315,10 @@ export default function PortfolioHome() {
             <div className={sectionHeader}>
               <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Experience</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                A clean, chronological story of ownership.
+                Experience across product and enterprise teams.
               </h2>
               <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                Each role focuses on what changed, what you owned, and where the measurable improvement came from.
+                Vaaree, Synechron, and TestYantra show the mix of work, tools, and outcomes.
               </p>
             </div>
 
@@ -351,7 +351,7 @@ export default function PortfolioHome() {
                   </div>
 
                   <div className="space-y-4 border-t border-slate-100 pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-500">Impact snapshot</p>
+                    <p className="text-sm uppercase tracking-[0.3em] text-slate-500">Key results</p>
                     <h4 className="text-xl font-semibold text-slate-950">{experience.highlight}</h4>
                     <ul className="space-y-3">
                       {experience.bullets.map((bullet) => (
@@ -372,10 +372,10 @@ export default function PortfolioHome() {
           <div className={sectionHeader}>
             <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Toolkit</p>
             <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              The stack is focused, not overloaded.
+              Tools I use most often.
             </h2>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              Compact skill groups work better here than huge walls of chips. It keeps the page smooth and readable.
+              Grouped by the kind of work they support.
             </p>
           </div>
 
@@ -409,7 +409,7 @@ export default function PortfolioHome() {
                 "OpenAI-assisted QA",
                 "Jenkins and delivery flow",
                 "Mobile and API testing",
-                "STLC ownership",
+                "STLC delivery",
               ].map((item) => (
                 <div
                   key={item}
@@ -427,10 +427,10 @@ export default function PortfolioHome() {
             <div className={sectionHeader}>
               <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">How I work</p>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Simple process. Strong signal. Minimal noise.
+                Process.
               </h2>
               <p className="max-w-2xl text-lg leading-8 text-white/68">
-                This section keeps the page informative without becoming dense or dashboard-like.
+                Plan early, automate the important paths, and keep the checks running.
               </p>
             </div>
 
@@ -459,7 +459,7 @@ export default function PortfolioHome() {
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">Contact</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                If the role needs strong automation ownership, let’s talk.
+                Open to SDET and automation roles.
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-white/68">
                 {site.availability}
@@ -515,7 +515,7 @@ export default function PortfolioHome() {
       <footer className="border-t border-white/10 bg-slate-950 py-10 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 text-sm text-white/55 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p>© {new Date().getFullYear()} Shashank Rushiya. All rights reserved.</p>
-          <p>Built to keep the story clear, concise, and easy to follow.</p>
+          <p>Python, automation, and release work.</p>
         </div>
       </footer>
     </div>
