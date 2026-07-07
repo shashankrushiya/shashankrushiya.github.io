@@ -62,7 +62,7 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/rushiyashashank",
   resumePath: "/resume.pdf",
   summary:
-    "SDET with 2+ years of experience building Python-based automation frameworks, defining end-to-end test strategy, and improving release confidence across UI, API, integration, and mobile testing.",
+    "SDET with 3 years of experience building Python-based automation frameworks, defining end-to-end test strategy, and improving release confidence across UI, API, integration, and mobile testing.",
   availability:
     "Open to SDET, QA Automation, and quality engineering roles that need strong automation ownership and practical release discipline.",
 };
