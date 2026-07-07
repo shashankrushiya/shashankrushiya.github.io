@@ -77,7 +77,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const heroStats: MetricItem[] = [
-  { value: "2+", label: "years in SDET" },
+  { value: "3", label: "years in SDET" },
   { value: "40% → 75%", label: "automation coverage" },
   { value: "35%", label: "faster regression cycles" },
   { value: "5", label: "QA team members mentored" },
