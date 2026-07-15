@@ -1,523 +1,78 @@
-"use client";
+import { ArrowDownRight, ArrowUpRight, Download, MapPin } from "lucide-react";
+import { builtTools, contactLinks, experiences, heroStats, heroTags, impactMetrics, navItems, site, skills } from "@/data/portfolio";
 
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  BadgeCheck,
-  BrainCircuit,
-  CalendarDays,
-  CheckCircle2,
-  Code2,
-  Github,
-  GraduationCap,
-  Layers3,
-  Linkedin,
-  Mail,
-  MapPin,
-  ShieldCheck,
-  Workflow,
-} from "lucide-react";
-import {
-  education,
-  experiences,
-  heroStats,
-  highlights,
-  impactMetrics,
-  skills,
-  site,
-} from "@/data/portfolio";
+function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) {
+  return <p className="font-mono text-xs font-medium tracking-[0.18em] text-muted"><span className="mr-3 text-verified">{number}</span>{children}</p>;
+}
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const sectionHeader =
-  "relative max-w-3xl space-y-4 before:absolute before:-left-4 before:top-2 before:h-10 before:w-1 before:rounded-full before:content-[''] before:bg-[linear-gradient(180deg,#111827,#2563eb)]";
-
-const processSteps = [
-  {
-    step: "01",
-    title: "Review requirements early",
-    text: "I review scope, edge cases, and testability before the sprint closes.",
-    icon: ShieldCheck,
-  },
-  {
-    step: "02",
-    title: "Automate the critical path",
-    text: "I build coverage across UI, API, and integration layers using Python, Playwright, Selenium, Pytest, and BDD.",
-    icon: Code2,
-  },
-  {
-    step: "03",
-    title: "Tie tests to delivery",
-    text: "Automated checks run through Jenkins and release routines.",
-    icon: Workflow,
-  },
-  {
-    step: "04",
-    title: "Measure and improve",
-    text: "I track coverage, cycle time, flaky tests, and defect leakage.",
-    icon: Layers3,
-  },
+const caseStudyCopy = [
+  { title: "Cutting regression time by building a real automation framework.", problem: "Release confidence depended on slow, inconsistent manual regression across UI, API, and integration layers.", result: "Automation coverage grew from 40% to 75% and regression cycles ran 35% faster, while mentoring a 5-person QA team on the new standard." },
+  { title: "Stabilizing automation for financial workflows in a 3-month engagement.", problem: "Financial workflow testing needed reliable automated coverage fast, with production failures triaged largely by hand.", result: "Delivered a working, lower-flake automation layer for financial workflows within a focused 3-month tenure." },
+  { title: "Scaling automated coverage for a distributed loan processing system.", problem: "A distributed loan processing system needed systematic API and data validation to catch reliability issues earlier.", result: "Cycle time dropped 20%, manual testing effort dropped 30%, and API reliability improved 15%." },
 ];
 
 export default function PortfolioHome() {
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#f8fafc_0%,#f3f4f6_35%,#fffdf8_100%)] text-slate-950">
-      <header className="sticky top-0 z-40 border-b border-white/40 bg-white/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <a href="#home" className="text-sm font-semibold tracking-[0.28em] text-slate-900 uppercase">
-            Shashank Rushiya
-          </a>
-          <nav className="hidden items-center gap-6 md:flex">
-            {["About", "Impact", "Experience", "Toolkit", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-sm text-slate-600 transition-colors hover:text-slate-950"
-              >
-                {item}
-              </a>
-            ))}
+    <div className="bg-paper text-ink">
+      <header className="sticky top-0 z-30 border-b border-line bg-paper/95">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8">
+          <a href="#home" className="font-display text-lg font-bold tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-verified">SR<span className="text-verified">.</span></a>
+          <nav aria-label="Primary navigation" className="hidden items-center gap-5 lg:flex">
+            {navItems.map((item) => <a key={item.href} href={item.href} className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-verified">{item.label}</a>)}
           </nav>
+          <a href="#contact" className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink underline decoration-verified decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-verified">Let&apos;s talk</a>
         </div>
       </header>
 
       <main>
-        <section id="home" className="relative overflow-hidden bg-slate-950 text-white">
-          <div className="absolute inset-0">
-            <div className="absolute left-[-8rem] top-24 h-80 w-80 rounded-full bg-blue-500/15 blur-3xl" />
-            <div className="absolute right-[-6rem] top-32 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl" />
-          </div>
-
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-28">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
-              <div className="flex flex-wrap items-center gap-3 text-sm text-white/70">
-                <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">
-                  SDET / Automation Test Engineer
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1">
-                  <MapPin size={14} />
-                  {site.location}
-                </span>
-                
+        <section id="home" className="border-b border-line">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:py-28">
+            <div className="max-w-3xl">
+              <div className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs">
+                <span className="inline-flex items-center gap-2 rounded-full bg-verified-bg px-3 py-1.5 font-medium text-verified"><span className="h-1.5 w-1.5 rounded-full bg-verified" />Available for opportunities</span>
+                <span className="text-muted">{site.location}</span>
               </div>
-
-              <div className="space-y-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">Automation engineer</p>
-                <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
-                  Python automation for UI, API, and integration testing.
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-white/72">
-                  {site.summary}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={site.resumePath}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition-transform hover:-translate-y-0.5"
-                >
-                  Download Resume
-                  <ArrowRight size={16} />
-                </a>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  <Mail size={16} />
-                  Contact
-                </a>
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  <Linkedin size={16} />
-                  LinkedIn
-                </a>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-4">
-                {heroStats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl"
-                  >
-                    <div className="text-2xl font-semibold text-white">{stat.value}</div>
-                    <div className="mt-1 text-sm text-white/60">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {["Python", "Playwright", "Selenium", "Pytest", "OpenAI API", "Jenkins", "JIRA"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80"
-                    >
-                      {tag}
-                    </span>
-                  ),
-                )}
-              </div>
-            </motion.div>
-
-            <motion.aside
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/45">At a glance</p>
-                  <h2 className="mt-2 text-2xl font-semibold text-white">Outcome-focused QA engineering</h2>
-                </div>
-                <div className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-200">
-                  Open to roles
-                </div>
-              </div>
-
-              <div className="mt-6 space-y-3">
-                {[
-                  "Test strategy, execution, and release sign-off",
-                  "UI, API, integration, and mobile testing",
-                  "OpenAI-assisted test generation and reporting",
-                  "Coverage, cycle time, and flaky-test reduction",
-                ].map((point) => (
-                  <div
-                    key={point}
-                    className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/45 p-4"
-                  >
-                    <CheckCircle2 size={16} className="mt-0.5 text-sky-300" />
-                    <span className="text-sm leading-6 text-white/75">{point}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-white/10 bg-slate-950/45 p-4">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/45">Current focus</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {["Automation coverage", "Quality signals", "Release confidence", "Team mentoring"].map(
-                    (item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75"
-                      >
-                        {item}
-                      </span>
-                    ),
-                  )}
-                </div>
-              </div>
-            </motion.aside>
+              <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-muted">SDET / Quality Engineering</p>
+              <h1 className="mt-5 font-display text-5xl font-bold leading-[.96] tracking-[-0.06em] text-ink sm:text-6xl lg:text-7xl">{site.name}<span className="text-verified">.</span></h1>
+              <p className="mt-6 font-display text-2xl font-medium tracking-tight text-ink-soft sm:text-3xl">{site.role}</p>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-ink-soft">{site.summary}</p>
+              <div className="mt-9 flex flex-wrap gap-2">{heroTags.map((tag) => <span key={tag} className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-ink-soft">{tag}</span>)}</div>
+            </div>
+            <aside aria-label="Selected quality metrics" className="self-center border border-dark-line bg-dark text-paper shadow-[8px_8px_0_#DFD7C6]">
+              <div className="flex items-center gap-2 border-b border-dark-line px-4 py-3"><span className="h-2.5 w-2.5 rounded-full bg-[#D45B55]" /><span className="h-2.5 w-2.5 rounded-full bg-amber" /><span className="h-2.5 w-2.5 rounded-full bg-verified" /><span className="ml-2 font-mono text-[10px] uppercase tracking-[0.13em] text-muted-light">release_quality.log</span></div>
+              <div className="grid grid-cols-2">{heroStats.map((stat, index) => <div key={stat.label} className={`p-5 sm:p-6 ${index % 2 ? "border-l border-dark-line" : ""} ${index > 1 ? "border-t border-dark-line" : ""}`}><p className="font-display text-3xl font-bold tracking-tight text-paper sm:text-4xl">{stat.value}</p><p className="mt-2 font-mono text-[10px] uppercase leading-5 tracking-[0.1em] text-muted-light">{stat.label}</p></div>)}</div>
+              <p className="border-t border-dark-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-verified">status: passing</p>
+            </aside>
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className={sectionHeader}>
-            <p className="text-xs uppercase tracking-[0.35em] text-sky-700/70">Overview</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Selected work across automation, quality, and delivery.
-            </h2>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              Python-based automation, API coverage, CI/CD integration, and release support across product teams.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-4">
-            {highlights.map((item) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
-              >
-                <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-                  <item.icon size={18} />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-              <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-                <GraduationCap size={18} />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-950">Education</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                {education.degree} at {education.institution} ({education.years})
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-              <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-                <Code2 size={18} />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-950">Primary stack</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Python, Playwright, Selenium, Pytest, REST API automation, SQL, and Jenkins.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-              <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-                <BrainCircuit size={18} />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-950">OpenAI-assisted testing</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Test generation and reporting where it saves time.
-              </p>
-            </div>
+        <section id="philosophy" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <SectionLabel number="01">TESTING PHILOSOPHY</SectionLabel>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[.78fr_1.22fr]">
+            <h2 className="font-display text-4xl font-bold leading-tight tracking-[-0.045em] sm:text-5xl">Quality is a release decision, not a QA checkbox.</h2>
+            <div className="space-y-6 text-lg leading-8 text-ink-soft"><p>I review requirements and code early enough to catch testability and edge-case gaps before a sprint closes, not after a build breaks in staging.</p><p>Automation only earns its place if it covers the critical path across UI, API, and integration layers, and runs fast enough that engineers actually trust the result. I build that layer with Python, Playwright, Selenium, and Pytest, and reach for the OpenAI API where it genuinely reduces manual authoring effort.</p><p>The job doesn&apos;t end at a green checkmark. I track coverage, cycle time, flaky-test rate, and defect leakage, and treat a rising flake rate as seriously as a failing suite.</p></div>
           </div>
         </section>
 
-        <section id="impact" className="bg-white py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={sectionHeader}>
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Impact</p>
-              <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Results from recent roles.
-              </h2>
-              <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                Coverage, cycle time, and reliability gains from production automation work.
-              </p>
-            </div>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {impactMetrics.map((metric) => (
-                <div key={metric.label} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6">
-                  <div className="text-3xl font-semibold text-slate-950">{metric.value}</div>
-                  <div className="mt-2 text-sm leading-6 text-slate-600">{metric.label}</div>
-                </div>
-              ))}
-            </div>
+        <section id="stack" className="border-y border-line bg-paper-panel py-24">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8"><SectionLabel number="02">TECH STACK</SectionLabel><div className="mt-8 flex flex-col justify-between gap-5 md:flex-row md:items-end"><h2 className="font-display text-4xl font-bold tracking-[-0.045em] sm:text-5xl">Tools, organized by the work they support.</h2><p className="max-w-sm text-sm leading-6 text-ink-soft">A practical stack across test authoring, delivery, and quality operations.</p></div>
+            <div className="mt-12 grid border-l border-t border-line sm:grid-cols-2">{skills.map((group) => <article key={group.category} className="border-b border-r border-line p-6 sm:p-8"><h3 className="font-display text-xl font-bold tracking-tight">{group.category}</h3><p className="mt-3 max-w-sm text-sm leading-6 text-ink-soft">{group.summary}</p><ul className="mt-6 flex flex-wrap gap-2">{group.items.map((item) => <li key={item} className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-ink-soft">{item}</li>)}</ul></article>)}</div>
           </div>
         </section>
 
-        <section className="bg-[linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)] py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={sectionHeader}>
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Experience</p>
-              <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Experience across product and enterprise teams.
-              </h2>
-              <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                Vaaree, Synechron, and TestYantra show the mix of work, tools, and outcomes.
-              </p>
-            </div>
-
-            <div className="mt-10 space-y-5">
-              {experiences.map((experience, index) => (
-                <motion.article
-                  key={`${experience.company}-${experience.role}`}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.04 }}
-                  className="grid gap-4 rounded-[1.75rem] border border-white bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.07)] lg:grid-cols-[260px_1fr]"
-                >
-                  <div className="space-y-3">
-                    <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-                      <BadgeCheck size={18} />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-slate-950">{experience.role}</h3>
-                    <p className="text-sm font-medium text-slate-600">{experience.company}</p>
-                    <div className="space-y-2 text-sm text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <CalendarDays size={14} />
-                        {experience.duration}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin size={14} />
-                        {experience.location}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 border-t border-slate-100 pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-500">Key results</p>
-                    <h4 className="text-xl font-semibold text-slate-950">{experience.highlight}</h4>
-                    <ul className="space-y-3">
-                      {experience.bullets.map((bullet) => (
-                        <li key={bullet} className="flex gap-3 text-sm leading-6 text-slate-700">
-                          <span className="mt-2 h-2 w-2 rounded-full bg-sky-500" />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
+        <section id="work" className="mx-auto max-w-7xl px-5 py-24 sm:px-8"><SectionLabel number="03">SELECTED WORK</SectionLabel><div className="mt-8 max-w-3xl"><h2 className="font-display text-4xl font-bold tracking-[-0.045em] sm:text-5xl">Automation as an operating standard.</h2></div>
+          <div className="mt-12 space-y-12">{experiences.map((experience, index) => { const study = caseStudyCopy[index]; return <article id={index === 0 ? "vaaree-case-study" : undefined} key={experience.company} className="grid gap-7 border-t border-line pt-6 lg:grid-cols-[.55fr_1.45fr]"><div><p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted">0{index + 1} / {experience.company}</p><h3 className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight">{study.title}</h3></div><div className="grid gap-6 md:grid-cols-3"><div><p className="font-mono text-[10px] uppercase tracking-[0.14em] text-amber">Problem</p><p className="mt-3 text-sm leading-6 text-ink-soft">{study.problem}</p></div><div><p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Approach</p><ul className="mt-3 space-y-3">{experience.bullets.map((bullet) => <li key={bullet} className="text-sm leading-6 text-ink-soft before:mr-2 before:text-verified before:content-['→']">{bullet}</li>)}</ul>{index === 0 && <a href="#tools" className="mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-verified underline underline-offset-4">Test Case Builder <ArrowDownRight size={14} /></a>}</div><div className="border-l-2 border-verified pl-4"><p className="font-mono text-[10px] uppercase tracking-[0.14em] text-verified">Result</p><p className="mt-3 text-sm font-medium leading-6 text-ink">{study.result}</p></div></div></article>})}</div>
         </section>
 
-        <section id="toolkit" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className={sectionHeader}>
-            <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Toolkit</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Tools I use most often.
-            </h2>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              Grouped by the kind of work they support.
-            </p>
-          </div>
+        <section id="tools" className="border-y border-line bg-paper-panel py-24"><div className="mx-auto max-w-7xl px-5 sm:px-8"><SectionLabel number="04">TOOLS I&apos;VE BUILT</SectionLabel>{builtTools.map((tool) => <article key={tool.name} className="mt-8 grid gap-8 border border-ink bg-paper p-6 sm:p-10 lg:grid-cols-[1.2fr_.8fr]"><div><p className="font-mono text-xs uppercase tracking-[0.15em] text-verified">Shipped tool / built solo</p><h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.045em]">{tool.name}</h2><p className="mt-5 max-w-xl text-lg leading-8 text-ink-soft">{tool.description}</p><dl className="mt-7 grid gap-5 sm:grid-cols-2"><div><dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Input</dt><dd className="mt-2 text-sm leading-6 text-ink-soft">{tool.input}</dd></div><div><dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Output</dt><dd className="mt-2 text-sm leading-6 text-ink-soft">{tool.output}</dd></div></dl><div className="mt-7 flex flex-wrap gap-2">{tool.tags.map((tag) => <span key={tag} className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-ink-soft">{tag}</span>)}</div></div><div className="flex flex-col justify-between border-t border-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"><div><p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Manual test-case writing</p><p className="mt-3 font-display text-6xl font-bold tracking-[-0.06em] text-verified">{tool.impact}</p><p className="mt-2 text-sm text-ink-soft">less effort for the QA team</p></div><a href={tool.caseStudyHref} className="mt-10 inline-flex items-center gap-2 font-mono text-xs font-medium text-ink underline decoration-verified decoration-2 underline-offset-4">View Vaaree case study <ArrowUpRight size={14} /></a></div></article>)}</div></section>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {skills.map((group) => (
-              <div
-                key={group.category}
-                className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">{group.category}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{group.summary}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        <section id="experience" className="mx-auto max-w-7xl px-5 py-24 sm:px-8"><SectionLabel number="05">EXPERIENCE</SectionLabel><div className="mt-8 grid gap-8 lg:grid-cols-[.7fr_1.3fr]"><h2 className="font-display text-4xl font-bold tracking-[-0.045em] sm:text-5xl">Work history, on the release line.</h2><div className="relative border-l border-line pl-8">{experiences.map((experience) => <article key={`${experience.company}-${experience.role}`} className="relative pb-12 last:pb-0 before:absolute before:-left-[37px] before:top-1 before:h-4 before:w-4 before:rounded-full before:border-4 before:border-paper before:bg-verified"><p className="font-mono text-xs text-muted">{experience.duration}</p><h3 className="mt-2 font-display text-2xl font-bold tracking-tight">{experience.role}</h3><p className="mt-1 font-medium text-ink-soft">{experience.company}</p><p className="mt-3 flex items-center gap-2 font-mono text-xs text-muted"><MapPin size={13} />{experience.location}</p><p className="mt-4 max-w-xl text-sm leading-6 text-ink-soft">{experience.highlight}</p></article>)}</div></div></section>
 
-          <div className="mt-6 rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.04)]">
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                "Python automation",
-                "Playwright + Selenium",
-                "OpenAI-assisted QA",
-                "Jenkins and delivery flow",
-                "Mobile and API testing",
-                "STLC delivery",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <section id="impact" className="bg-dark py-24 text-paper"><div className="mx-auto max-w-7xl px-5 sm:px-8"><SectionLabel number="06">MEASURABLE IMPACT</SectionLabel><div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end"><h2 className="max-w-2xl font-display text-4xl font-bold tracking-[-0.045em] sm:text-5xl">The output is confidence—and evidence.</h2><p className="max-w-sm text-sm leading-6 text-muted-light">Metrics from automation, delivery, and team practice across recent roles.</p></div><div className="mt-12 grid gap-px bg-dark-line sm:grid-cols-2 lg:grid-cols-3">{impactMetrics.map((metric) => <div key={metric.label} className="bg-dark p-6 sm:p-8"><p className="font-display text-4xl font-bold tracking-[-0.05em] text-paper">{metric.value}</p><p className="mt-2 font-mono text-xs leading-5 text-muted-light">{metric.label}</p></div>)}</div></div></section>
 
-        <section className="bg-slate-950 py-20 text-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={sectionHeader}>
-              <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">How I work</p>
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Process.
-              </h2>
-              <p className="max-w-2xl text-lg leading-8 text-white/68">
-                Plan early, automate the important paths, and keep the checks running.
-              </p>
-            </div>
-
-            <div className="mt-10 grid gap-4 lg:grid-cols-4">
-              {processSteps.map((step) => (
-                <div
-                  key={step.step}
-                  className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sky-200">
-                      <step.icon size={18} />
-                    </div>
-                    <div className="text-xs uppercase tracking-[0.35em] text-white/40">{step.step}</div>
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/65">{step.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)] py-20 text-white">
-          <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-sky-300/70">Contact</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Open to SDET and automation roles.
-              </h2>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/68">
-                {site.availability}
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <div className="grid gap-3">
-                {[
-                  { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail },
-                  { label: "GitHub", value: "github.com/shashankrushiya", href: site.github, icon: Github },
-                  { label: "LinkedIn", value: "linkedin.com/in/rushiyashashank", href: site.linkedin, icon: Linkedin },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-slate-950/50 p-4 transition-colors hover:bg-white/10"
-                  >
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sky-200">
-                      <item.icon size={18} />
-                    </div>
-                    <div>
-                      <div className="text-sm text-white/45">{item.label}</div>
-                      <div className="text-sm text-white/85">{item.value}</div>
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={site.resumePath}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition-transform hover:-translate-y-0.5"
-                >
-                  Download Resume
-                  <ArrowRight size={16} />
-                </a>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  <Mail size={16} />
-                  Start conversation
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8"><SectionLabel number="07">CONTACT</SectionLabel><div className="mt-8 grid gap-10 border-t border-ink pt-8 lg:grid-cols-[1fr_1fr]"><div><h2 className="font-display text-4xl font-bold tracking-[-0.045em] sm:text-5xl">Open to quality work with real ownership.</h2><p className="mt-6 max-w-xl text-lg leading-8 text-ink-soft">{site.availability}</p><a href={site.resumePath} className="mt-8 inline-flex items-center gap-2 bg-ink px-5 py-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-paper transition-colors hover:bg-ink-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-verified"><Download size={15} />Download resume</a></div><ul className="divide-y divide-line border-y border-line">{contactLinks.map((link) => { const Icon = link.icon; const external = link.href.startsWith("http"); return <li key={link.label}><a href={link.href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} className="flex items-center justify-between gap-4 py-5 transition-colors hover:text-verified focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-verified"><span className="flex items-center gap-4"><Icon size={18} /><span><span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{link.label}</span><span className="mt-1 block text-sm text-ink-soft">{link.value}</span></span></span><ArrowUpRight size={17} /></a></li>})}</ul></div></section>
       </main>
-
-      <footer className="border-t border-white/10 bg-slate-950 py-10 text-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 text-sm text-white/55 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>© {new Date().getFullYear()} Shashank Rushiya. All rights reserved.</p>
-          <p>Python, automation, and release work.</p>
-        </div>
-      </footer>
+      <footer className="border-t border-line px-5 py-7 sm:px-8"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted sm:flex-row"><p>© {new Date().getFullYear()} {site.name}</p><p>Quality is a release decision.</p></div></footer>
     </div>
   );
 }
